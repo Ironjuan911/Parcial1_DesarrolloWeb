@@ -1,5 +1,6 @@
 # Parcial1_DesarrolloWeb
 Repositorio que contiene el proyecto destinado al parcial 1 de desarrollo Web
+https://docs.google.com/document/d/1BKIKymI85kuoA2CztBO3JdkYLvvpL3XMIRIoNnqi0sE/edit?usp=drivesdk
 
 ## Integrantes:
 - Juan Arevalo (192389)
