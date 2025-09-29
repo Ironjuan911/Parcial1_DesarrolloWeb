@@ -1,0 +1,130 @@
+.header {
+    position:fixed;
+    top: 0;          /* Lo coloca en la parte superior */
+    left: 0;         /* Lo alinea al borde izquierdo */
+    width: 100%; 
+    background-color: #0c0c0c;
+    color: #d4d4d4;
+
+}
+
+html {
+    scroll-padding-top: 12%; /* Ajusta este valor a la altura de tu header fijo */
+}
+
+body {
+    margin-top: 7%; /* Elimina el margen por defecto */
+
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    /* Espacio máximo entre logo y el resto */
+    align-items: center;
+
+    margin: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* En fila los enlaces de navegación */
+}
+
+
+.nav-menu__item {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: #a1a1a1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-menu__item:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.nav-menu__item.active {
+    background-color: #555;
+    color: #fff;
+    font-weight: bold;
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+    /* Empuja los botones hacia la derecha */
+}
+
+.user-action {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-left: 1rem;
+}
+
+.btn--outline {
+    border: 1px solid #a1a1a1;
+    color: #a1a1a1;
+}
+
+.btn--outline:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.btn--primary {
+    background-color: #2a86eb;
+    color: #fff;
+    border: none;
+}
+
+.btn--primary:hover {
+    background-color: #1e6bb8;
+}
+
+
+/* "Enganchamos" visualmente las acciones al final de la lista */
+.header__container {
+    display: flex;
+    justify-content: flex-start;
+    /* Alinea todo a la izquierda inicialmente */
+    align-items: center;
+
+    margin: 10px 40px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    /* Empuja la navegación y las acciones a la derecha */
+}
+
+.header__actions {
+    margin-left: 1.5rem;
+    /* Espacio entre el último enlace y el primer botón */
+}
+
+.header__actions .user-action:first-child {
+    margin-left: 1.5rem;
+    /* Espacio entre los botones */
+}
