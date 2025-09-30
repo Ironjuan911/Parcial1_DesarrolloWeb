@@ -9,8 +9,6 @@ class headerComponent {
         const elementos = [
             { text: 'Inicio', href: '../index.html' },
             { text: 'Productos', href: '../Pages/productos.html' },
-            { text: 'Acerca', href: '#about' },
-            { text: 'Contacto', href: '#contact' }
         ]
 
         for (const elem of elementos) {

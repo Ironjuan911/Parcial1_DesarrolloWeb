@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,28 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/footer.css">
 </head>
+
 <body>
-    
+
+    <template id = "game-template">
+        <h1 class = "title"></h1>
+        <p class = "description"></p>
+        <img class = "thumbnail" />
+        <h2>Precio</h2>
+        <p class = "price"></p>
+        <h2>Requisitos del sistema</h2>
+        <p class = "min-pc_requirements"></p>
+        <p class = "recomended-pc_requirements"></p>
+
+    </template>
 
     <div id="header"></div>
-    <div id="main-content">
-        <h1>Productos</h1>
-        <div id="product-list"></div>
-    </div>
+    <div id="game-content"></div>
     <div id="footer"></div>
-    
-</body>
 
+</body>
 <script src="../JS/components/setComponents.js"></script>
 <script src="../JS/components/header.js"></script>
 <script src="../JS/steamDB.js"></script>
-<script type="module" src="../JS/productos.js"></script>
-
 
 </html>
