@@ -25,7 +25,7 @@ class MiGame extends HTMLElement {
         this.shadowRoot.innerHTML = `
 
             <div>
-                <a href="../Pages/game.html?appId=${appId}">
+                <a href="../pages/game.html?appId=${appId}">
                     <img src="${imageUrl}" alt="${title}" />
                     <h3>${title}</h3>
                 <a>

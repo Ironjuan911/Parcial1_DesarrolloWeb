@@ -8,7 +8,7 @@ class headerComponent {
 
         const elementos = [
             { text: 'Inicio', href: '../index.html' },
-            { text: 'Productos', href: '../Pages/productos.html' },
+            { text: 'Productos', href: '../pages/productos.html' },
         ]
 
         for (const elem of elementos) {
