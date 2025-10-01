@@ -1,4 +1,3 @@
-const template = document.getElementById("game-template");
 const contenedor = document.getElementById("game-content");
 
 const steamDB = new steamDataBase();
@@ -13,15 +12,16 @@ const appId = urlParams.get('appId'); // 'appId' es el nombre del parámetro que
 
 async function cargarJuego(appId) {
     const game = await steamDB.importarJuego(appId);
-    if (game.sussess) {
-        const clone = template.content.cloneNode(true);
-        clone.querySelector('title').textContent = game.name;
-        clone.querySelector('description').textContent = game.short_description;
-        clone.querySelector('img').src = game.capsule_image;
-        clone.querySelector('img').alt = game.name;
-        clone.querySelector('price').textContent = game.is_free ? "Gratis" : `$${game.price_overview.final / 100}`;
-        contenedor.appendChild(clone);
-    
-        clone.querySelector('').textContent
+    if (true) {
+        console.log("Cargando juego:");
+
+        contenedor.querySelector('.title').textContent = game.name;
+        contenedor.querySelector('.description').textContent = game.short_description;
+        contenedor.querySelector('.thumbnail').src = game.capsule_image;
+        contenedor.querySelector('.thumbnail').alt = game.name;
+        contenedor.querySelector('.price').textContent = game.is_free ? "Gratis" : `$${game.price_overview.final / 100}`;
+
     }
 }
+
+cargarJuego(appId);
