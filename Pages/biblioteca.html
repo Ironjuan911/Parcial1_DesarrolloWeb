@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/generalStyles.css">
 </head>
 <body>
-    
+    <template id="game-template">
+        <div class="game-card">
+            <img class="game-card__image" />
+            <h3 class="game-card__title"></h3>
+            <a class="game-card__link" href="#">Ver más</a>
+        </div>
+    </template>
 
     <div id="header"></div>
     <div id="main-content">
-        <h1>Productos</h1>
-        <div id="product-list"></div>
+        <h1>Mi Biblioteca</h1>
+        <div id="game-list"></div>
     </div>
     <div id="footer"></div>
     
@@ -23,7 +29,5 @@
 <script src="../JS/components/setComponents.js"></script>
 <script src="../JS/components/header.js"></script>
 <script src="../JS/steamDB.js"></script>
-<script type="module" src="../JS/productos.js"></script>
-
-
+<script src="../JS/biblioteca.js"></script>
 </html>

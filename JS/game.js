@@ -26,8 +26,20 @@ async function cargarJuego(appId) {
         contenedor.querySelector('.min-pc_requirements').innerHTML += game.pc_requirements.minimum || "No disponible";
         contenedor.querySelector('.recomended-pc_requirements').innerHTML += game.pc_requirements.recommended || "No disponible";
 
-
+        const btnComprar = contenedor.querySelector('.btn--buyGame');
+        btnComprar.addEventListener('click', function() {
+            if (localStorage.getItem('usuarioLogueado')) {
+                const dataMgr = new dataManager();
+                dataMgr.buygame(game.steam_appid);
+                window.location.href = "../pages/productos.html";
+            } else {
+                alert("Debes iniciar sesion para comprar el juego.");
+                window.location.href = "../pages/login.html";
+            }
+        });
     }
 }
+
+
 
 cargarJuego(appId);
