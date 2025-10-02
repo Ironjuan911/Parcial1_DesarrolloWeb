@@ -1,0 +1,40 @@
+/* Estilos globales mínimos: fondo oscuro tipo Steam y ajustes de color no invasivos */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body {
+	/* Fondo estilo Steam: sutil degradado azul oscuro/verde azulado */
+	background: linear-gradient(180deg, #0b2330 0%, #071924 100%);
+	color: #dbe7ef; /* texto claro por defecto */
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Variable global para ancho uniforme de tarjetas de producto */
+:root { --product-card-width: 820px; }
+/* Tamaño uniforme para tarjetas de producto */
+:root { --product-card-height: 180px; --product-image-width: 260px; }
+
+/* Asegurar que el contenido principal destaque (formularios ya usan fondo blanco) */
+#main-content {
+	/* no forzamos fondo, dejar que componentes lo definan; añadimos padding global */
+	padding: 20px 16px;
+}
+
+/* Enlaces por defecto (puedes ajustar para que coincida con tu paleta) */
+a { color: #6cd3d0; }
+
+/* Evitar afectar componentes que ya tienen estilos específicos */
+* { box-sizing: border-box; }
+
+/* Contenedor de productos: grid flexible */
+/* Layout vertical para la lista de productos (uno debajo del otro) */
+#product-list{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: flex-start; /* alinear las tarjetas a la izquierda */
+}
