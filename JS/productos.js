@@ -29,8 +29,8 @@ class MiGame extends HTMLElement {
                                             :host { display: block; margin: 6px 0; }
                                             .card {
                                                 width: 100%;
-                                                max-width: var(--product-card-width, 820px);
-                                                height: var(--product-card-height, 180px); /* altura uniforme */
+                                                width: 800px; /* ancho fijo uniforme */
+                                                height: 200px; /* altura fija uniforme */
                                                 margin: 0; /* alinear a la izquierda del contenedor */
                                                 background: rgba(255,255,255,0.03);
                                                 border-radius: 8px;
@@ -44,13 +44,13 @@ class MiGame extends HTMLElement {
                                                 align-items: center;
                                                 padding: 12px;
                                             }
-                                            .left{ display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; }
-                                            /* Imagen definida por variable; mantener proporción sin recortar */
-                                            .card img{ width: var(--product-image-width, 260px); height: calc(var(--product-card-height,180px) - 36px); object-fit: contain; border-radius:6px; display:block; }
+                                            .left{ display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; width: 280px; height: 100%; }
+                                            /* Imagen con tamaño fijo sin recortar */
+                                            .card img{ width: 260px; height: 140px; object-fit: contain; border-radius:6px; display:block; }
                                             .card h3{ margin: 0; font-size: 18px; color: #e6eef8; text-align: left; }
                                             .card .meta{ padding: 6px 0 10px 0; display:flex; flex-direction:column; }
                                             .card .price{ margin-top:8px; font-size:16px; color:#9be5e2; font-weight:700; }
-                                            .right{ display:flex; align-items:center; }
+                                            .right{ display:flex; align-items:center; flex: 1; height: 100%; }
                             .card .meta{ flex: 1 1 auto; }
                             /* Hover / focus: brillo sutil y elevación */
                             .card:hover, .card:focus-visible {

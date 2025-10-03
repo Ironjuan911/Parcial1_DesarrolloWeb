@@ -7,14 +7,304 @@
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/generalStyles.css">
+    <style>
+        /* Decoraciones específicas para productos */
+        #main-content {
+            padding-top: 120px;
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "banner banner"
+                "products sidebar"
+                "footer footer";
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .products-header {
+            grid-area: header;
+            text-align: center;
+            position: relative;
+            padding: 30px 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05));
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .products-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .deco-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.1;
+            animation: bounce 3s infinite;
+        }
+
+        .deco-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .deco-icon:nth-child(2) { top: 10%; right: 10%; animation-delay: 0.5s; }
+        .deco-icon:nth-child(3) { bottom: 10%; left: 10%; animation-delay: 1s; }
+        .deco-icon:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1.5s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .products-title {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .title-emoji {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .products-subtitle {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin: 0;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .motivational-banner {
+            grid-area: banner;
+            background: linear-gradient(90deg, #3b82f6, #10b981, #3b82f6);
+            background-size: 200% 100%;
+            animation: gradient 3s ease infinite;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .banner-icon {
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        #product-list {
+            grid-area: products;
+        }
+
+        .products-sidebar {
+            grid-area: sidebar;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-card:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .sidebar-card h3 {
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-card p {
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .products-footer-section {
+            grid-area: footer;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .gaming-quote {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .gaming-quote blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #cbd5e1;
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            color: #3b82f6;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Asegurar que el header esté por encima de todo */
+        #header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            #main-content {
+                grid-template-areas: 
+                    "header"
+                    "banner"
+                    "sidebar"
+                    "products"
+                    "footer";
+                grid-template-columns: 1fr;
+            }
+            
+            .products-sidebar {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 10px;
+            }
+            
+            .sidebar-card {
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-title {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .products-sidebar {
+                flex-direction: column;
+            }
+            
+            .sidebar-card {
+                min-width: unset;
+            }
+            
+            #main-content {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     
 
     <div id="header"></div>
     <div id="main-content">
-        <h1>Productos</h1>
+        <!-- Sección de encabezado de productos -->
+        <div class="products-header">
+            <div class="products-decorations">
+                <div class="deco-icon">🎮</div>
+                <div class="deco-icon">🌟</div>
+                <div class="deco-icon">🏆</div>
+                <div class="deco-icon">⚡</div>
+            </div>
+            <h1 class="products-title">
+                <span class="title-emoji">🎯</span>
+                Productos
+                <span class="title-emoji">🎯</span>
+            </h1>
+            <p class="products-subtitle">Descubre tu próxima aventura gaming</p>
+        </div>
+
+        <!-- Mensajes motivacionales rotativos -->
+        <div class="motivational-banner">
+            <div class="banner-content">
+                <span class="banner-icon">💡</span>
+                <span class="motivational-text">¡Encuentra tu juego perfecto y vive experiencias épicas!</span>
+            </div>
+        </div>
+
         <div id="product-list"></div>
+
+        <!-- Sección de estadísticas y motivación -->
+        <div class="products-sidebar">
+            <div class="sidebar-card">
+                <h3>🚀 ¡Gaming Zone!</h3>
+                <p>Más de 50 juegos disponibles</p>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>💎 Calidad Premium</h3>
+                <p>Solo los mejores títulos</p>
+            </div>
+            
+            <div class="sidebar-card">
+                <h3>🔥 Ofertas Hot</h3>
+                <p>Precios que te van a sorprender</p>
+            </div>
+        </div>
+
+        <!-- Footer de la sección de productos -->
+        <div class="products-footer-section">
+            <div class="gaming-quote">
+                <div class="quote-icon">🎮</div>
+                <blockquote>
+                    "Un gamer no nace, se hace con cada nivel completado"
+                </blockquote>
+                <div class="quote-author">- Game Zone Community</div>
+            </div>
+        </div>
     </div>
     <div id="footer"></div>
     

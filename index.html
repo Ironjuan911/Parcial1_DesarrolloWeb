@@ -1,5 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE h        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #main-content {
+            padding-top: 150px;
+            min-height: calc(100vh - 200px);
+            padding-bottom: 40px;
+        }
+        
+        #footer {
+            margin-top: auto;
+        }g="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +20,308 @@
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/generalStyles.css">
+    <style>
+        /* Estilos específicos solo para la página de inicio */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #main-content {
+            padding-top: 150px;
+            min-height: calc(100vh - 300px);
+            padding-bottom: 40px;
+        }
+        
+        #footer {
+            margin-top: auto;
+        }
+        
+        /* Asegurar que el header esté por encima de todo */
+        #header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        /* Sección de estadísticas antes del footer */
+        .stats-section {
+            margin: 40px 0 20px 0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .stats-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px 40px;
+            text-align: center;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        .stat-description {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .stat-card {
+                padding: 25px 30px;
+                margin: 0 15px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-description {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Estilos de la sección de bienvenida */
+        .welcome-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05));
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            z-index: 1;
+        }
+        
+        .welcome-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .title-icon {
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .title-subtitle {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .game-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .game-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .game-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .game-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .game-icon:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; }
+        .game-icon:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+        .game-icon:nth-child(5) { bottom: 10%; left: 20%; animation-delay: 4s; }
+        .game-icon:nth-child(6) { top: 40%; right: 5%; animation-delay: 5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .description-container {
+            text-align: left;
+        }
+        
+        .feature-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #60a5fa;
+        }
+        
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .feature-emoji {
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .welcome-title {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .title-icon {
+                font-size: 1.5rem;
+            }
+            .title-subtitle {
+                font-size: 1rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .game-icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="header"></div>
-    <div id="main-content"></div>
+    <div id="main-content">
+        <template id="game-template">
+            <div class="game-card">
+                <img class="game-card__image" />
+                <h3 class="game-card__title"></h3>
+                <a class="game-card__link" href="#">Ver más</a>
+            </div>
+        </template>
+
+        <!-- Sección de bienvenida -->
+        <section class="welcome-section">
+            <!-- Decoraciones de fondo -->
+            <div class="game-decorations">
+                <div class="game-icon">🎮</div>
+                <div class="game-icon">🕹️</div>
+                <div class="game-icon">🎯</div>
+                <div class="game-icon">⭐</div>
+                <div class="game-icon">🏆</div>
+                <div class="game-icon">💎</div>
+            </div>
+            
+            <div class="welcome-content">
+                <h1 class="welcome-title">
+                    <span class="title-icon">🎮</span>
+                    Bienvenido a Game Zone
+                    <span class="title-icon">🎮</span>
+                </h1>
+                <div class="title-subtitle">Tu tienda de videojuegos favorita</div>
+                
+                <div class="description-container">
+                    <div class="feature-highlight">
+                        <span class="feature-icon">🎉</span>
+                        <span>¡Gracias por visitar!</span>
+                    </div>
+                    
+                    <p class="welcome-description">
+                        Descubre el universo de los videojuegos en un solo lugar. Game Zone es tu plataforma definitiva 
+                        para explorar, comprar y gestionar tu biblioteca personal de juegos. Desde los últimos lanzamientos 
+                        hasta los clásicos atemporales, encuentra exactamente lo que buscas y sumérgete en experiencias 
+                        únicas que te mantendrán entretenido por horas.
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-emoji">💰</span>
+                            <span>Precios económicos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-emoji">📱</span>
+                            <span>Fácil navegación</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-emoji">⚡</span>
+                            <span>Descarga instantánea</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+    <!-- Sección de estadísticas antes del footer -->
+    <section class="stats-section">
+        <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-description">Personas visitan nuestra página al día para disfrutar de juegos económicos</div>
+        </div>
+    </section>
+    
     <div id="footer"></div>
     
 </body>
 
 <script src="../JS/components/setComponents.js"></script>
 <script src="../JS/components/header.js"></script>
+<script src="JS/home.js"></script>
 
 
 </html>

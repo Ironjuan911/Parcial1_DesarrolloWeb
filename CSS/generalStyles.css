@@ -38,3 +38,149 @@ a { color: #6cd3d0; }
 	gap: 12px;
 	align-items: flex-start; /* alinear las tarjetas a la izquierda */
 }
+
+/* Estilos generales sin afectar layout específico de páginas */
+
+/* Sección de bienvenida en inicio */
+.welcome-section {
+	text-align: center;
+	padding: 40px 20px;
+	margin-bottom: 40px;
+	background: rgba(255,255,255,0.02);
+	border-radius: 12px;
+	border: 1px solid rgba(255,255,255,0.05);
+}
+
+.welcome-content {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.welcome-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #ffffff;
+	margin: 0 0 20px 0;
+	text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.welcome-description {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	color: #cbd5e1;
+	margin: 0;
+	text-align: left;
+}
+
+/* Sección de juegos comprados en inicio */
+#purchased-games {
+	margin-top: 40px;
+	padding: 20px;
+	background: rgba(255,255,255,0.02);
+	border-radius: 12px;
+	border: 1px solid rgba(255,255,255,0.05);
+}
+
+.games-section-title {
+	font-size: 1.8rem;
+	color: #ffffff;
+	margin: 0 0 20px 0;
+	text-align: center;
+}
+
+#purchased-games-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: center;
+}
+
+/* Mensaje cuando no hay juegos */
+.no-games-message,
+.login-message {
+	text-align: center;
+	padding: 40px 20px;
+	color: #cbd5e1;
+}
+
+.no-games-message h3,
+.login-message h3 {
+	color: #ffffff;
+	font-size: 1.5rem;
+	margin: 0 0 15px 0;
+}
+
+.no-games-message p,
+.login-message p {
+	margin: 0 0 25px 0;
+	line-height: 1.5;
+}
+
+/* Botones de acción */
+.browse-games-btn,
+.view-all-btn,
+.login-btn,
+.register-btn {
+	display: inline-block;
+	padding: 12px 24px;
+	background: linear-gradient(135deg, #1e40af, #3b82f6);
+	color: white;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	margin: 0 8px;
+}
+
+.browse-games-btn:hover,
+.view-all-btn:hover,
+.login-btn:hover,
+.register-btn:hover {
+	background: linear-gradient(135deg, #1d4ed8, #2563eb);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.register-btn {
+	background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.register-btn:hover {
+	background: linear-gradient(135deg, #047857, #059669);
+	box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.auth-buttons {
+	margin-top: 20px;
+}
+
+.view-all-games {
+	margin-top: 20px;
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+	.welcome-title {
+		font-size: 2rem;
+	}
+	.welcome-description {
+		font-size: 1rem;
+	}
+	.welcome-section {
+		padding: 30px 15px;
+		margin-bottom: 30px;
+	}
+	
+	.auth-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: center;
+	}
+	
+	.login-btn,
+	.register-btn {
+		margin: 0;
+		width: 200px;
+	}
+}
