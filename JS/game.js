@@ -17,11 +17,23 @@ async function cargarJuego(appId) {
 
         contenedor.querySelector('.background-image').src = game.background;
 
+        let textPrice = "";
+
+        if (game.is_free) {
+            textPrice = "Gratis";
+        } else {
+            try{
+                textPrice = `$${game.price_overview.final / 100}`
+            } catch (error) {
+                textPrice = "No disponible";
+            }
+        }
+
         contenedor.querySelector('.title').innerHTML += game.name;
         contenedor.querySelector('.short_description').innerHTML += game.short_description;
         contenedor.querySelector('.thumbnail').src = game.header_image;
         contenedor.querySelector('.thumbnail').alt = game.name;
-        contenedor.querySelector('.price').innerHTML += game.is_free ? "Gratis" : `$${game.price_overview.final / 100}`;
+        contenedor.querySelector('.price').innerHTML += textPrice;
         contenedor.querySelector('.detailed_description').innerHTML += game.about_the_game || "No disponible";
         contenedor.querySelector('.min-pc_requirements').innerHTML += game.pc_requirements.minimum || "No disponible";
         contenedor.querySelector('.recomended-pc_requirements').innerHTML += game.pc_requirements.recommended || "No disponible";

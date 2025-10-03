@@ -30,10 +30,10 @@ class dataManager {
         window.location.href = "index.html";
     }
 
-    async setDefaultCredentials() {
-        const gameList = await fetch('../data/gameList.json').then(res => res.json());
+    setDefaultCredentials() {
+        localStorage.removeItem('usuarioLogueado');
 
-        localStorage.setItem('usuarios', JSON.stringify(gameList))
+        localStorage.removeItem('usuarios');
 
     }
 }

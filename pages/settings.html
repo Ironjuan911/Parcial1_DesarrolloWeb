@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/generalStyles.css">
 </head>
 <body>
+    <div id="header"></div>
+        <main class="main-content">
+            <h1>Configuración de la pagina</h1>
+            <p>Cerrar la sesion actual</p>
+            <button id = "cerrar-sesion" type="cerrarSesion">Cerrar sesion</button>
+
+            <p>Reestablecer a las credenciales por defecto</p>
+            <button id = "restablecer-datos" type="reestablecer">Reestablecer</button>
+        </main>
+    <div id="footer"></div>
     
 </body>
     <script src="../JS/components/setComponents.js"></script>
     <script src="../JS/components/header.js"></script>
+    <script src="../JS/dataManager.js"></script>
+    <script src="../JS/settings.js"></script>
 </html>

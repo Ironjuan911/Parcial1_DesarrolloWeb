@@ -19,6 +19,7 @@ class MiGame extends HTMLElement {
         const title = this.getAttribute('title') || 'Título por defecto';
         const appId = this.getAttribute('steam_appid') || 'Descripción por defecto';
         const imageUrl = this.getAttribute('image-url') || 'https://via.placeholder.com/150';
+        const price = this.getAttribute('price') || 'Gratis';
 
 
         // Estructura y Estilos encapsulados
@@ -28,6 +29,7 @@ class MiGame extends HTMLElement {
                 <a href="../pages/game.html?appId=${appId}">
                     <img src="${imageUrl}" alt="${title}" />
                     <h3>${title}</h3>
+                    <p id = price>${price}</p>
                 <a>
             </div>
         `;
@@ -64,10 +66,23 @@ async function mostrarJuegos() {
     // Iterar sobre cada juego en la lista y crear un componente personalizado para cada uno
     for (const idgame of gameList) {
         const gameData = await steamDB.importarJuego(idgame.id);
+        let textPrice = "";
+
+        if (gameData.is_free) {
+            textPrice = "Gratis";
+        } else {
+            try{
+                textPrice = `$${gameData.price_overview.final / 100}`
+            } catch (error) {
+                textPrice = "No disponible";
+            }
+        }
+
         productList.innerHTML += `<mi-game
             title = "${gameData.name}"
             steam_appid = "${gameData.steam_appid}"
             image-url = "${gameData.capsule_image}"
+            price = "${textPrice}"
         >
         </mi-game>`;
     }
