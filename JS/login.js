@@ -1,3 +1,11 @@
+async function init() {
+    const defaultCredentials = await fetch('../data/defaultCredentials.json').then(res => res.json());
+
+    if (localStorage.getItem('usuarios') === null) {
+        localStorage.setItem('usuarios', JSON.stringify(defaultCredentials));
+    }
+}
+
 document.querySelector('.login-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -17,3 +25,5 @@ document.querySelector('.login-form').addEventListener('submit', function(e) {
     alert('¡Bienvenido, ' + usuario.nombre + '!');
     window.location.href = '../index.html'; // O a la página que desees
 });
+
+init();

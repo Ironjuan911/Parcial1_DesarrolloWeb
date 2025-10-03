@@ -5,15 +5,16 @@ class headerComponent {
         console.log("Inicializando header...");
 
 
-        const defaultelements = [
+        const firstElements = [
             { text: 'Inicio', href: '../index.html' },
             { text: 'Productos', href: '../pages/productos.html' },
         ]
 
-        for (const elem of defaultelements) {
-            this.addItem(elem);
+        const lastElements = [
+            { text: 'Ajustes', href: '../pages/settings.html' },
+        ]
 
-        }
+        let allElements = firstElements;
 
         if (localStorage.getItem('usuarioLogueado')) {
             const header_actions = document.querySelector('.header__actions');
@@ -24,7 +25,14 @@ class headerComponent {
             clone.querySelector('.user').innerHTML = `Hola, ${JSON.parse(localStorage.getItem('usuarioLogueado')).nombre}`;
             header_actions.appendChild(clone);
 
-            this.addItem({ text: 'Mi Biblioteca', href: '../pages/biblioteca.html' });
+            allElements.push({ text: 'Biblioteca', href: '../pages/biblioteca.html' });
+        }
+
+        allElements.push(...lastElements);
+
+        for (const elem of allElements) {
+            this.addItem(elem);
+
         }
 
     }
