@@ -24,4 +24,16 @@ class dataManager {
         }
 
     }
+
+    closeSession() {
+        localStorage.removeItem('usuarioLogueado');
+        window.location.href = "index.html";
+    }
+
+    async setDefaultCredentials() {
+        const gameList = await fetch('../data/gameList.json').then(res => res.json());
+
+        localStorage.setItem('usuarios', JSON.stringify(gameList))
+
+    }
 }

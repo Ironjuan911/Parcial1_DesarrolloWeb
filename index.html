@@ -10,7 +10,69 @@
 </head>
 <body>
     <div id="header"></div>
-    <div id="main-content"></div>
+    <main id="main-content">
+        <template id="game-template">
+            <div class="game-card">
+                <img class="game-card__image" />
+                <h3 class="game-card__title"></h3>
+                <a class="game-card__link" href="#">Ver más</a>
+            </div>
+        </template>
+
+        <!-- Sección de bienvenida -->
+        <section class="welcome-section">
+            <!-- Decoraciones de fondo -->
+            <div class="game-decorations">
+                <div class="game-icon">🎮</div>
+                <div class="game-icon">🕹️</div>
+                <div class="game-icon">🎯</div>
+                <div class="game-icon">⭐</div>
+                <div class="game-icon">🏆</div>
+                <div class="game-icon">💎</div>
+            </div>
+            
+            <div class="welcome-content">
+                <h1 class="welcome-title">
+                    <span class="title-icon">🎮</span>
+                    Bienvenido a Game Zone
+                    <span class="title-icon">🎮</span>
+                </h1>
+                <div class="title-subtitle">Tu tienda de videojuegos favorita</div>
+                
+                <div class="description-container">
+                    <div class="feature-highlight">
+                        <span class="feature-icon">🎉</span>
+                        <span>¡Gracias por visitar!</span>
+                    </div>
+                    
+                    <p class="welcome-description">
+                        Descubre el universo de los videojuegos en un solo lugar. Game Zone es tu plataforma definitiva 
+                        para explorar, comprar y gestionar tu biblioteca personal de juegos. Desde los últimos lanzamientos 
+                        hasta los clásicos atemporales, encuentra exactamente lo que buscas y sumérgete en experiencias 
+                        únicas que te mantendrán entretenido por horas.
+                    </p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-emoji">💰</span>
+                            <span>Precios económicos</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-emoji">📱</span>
+                            <span>Fácil navegación</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-emoji">⚡</span>
+                            <span>Descarga instantánea</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    </main>
     <div id="footer"></div>
     
 </body>
