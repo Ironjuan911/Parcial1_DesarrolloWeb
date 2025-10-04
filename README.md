@@ -106,6 +106,8 @@ README.md        -> Documentación del proyecto
     </div>
 </template>
 
+```
+
 - En las páginas de productos y juegos se usan plantillas y componentes personalizados para mostrar la información de cada juego.
 
 ### Web Components personalizados
