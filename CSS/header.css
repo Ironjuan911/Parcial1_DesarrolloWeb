@@ -1,26 +1,27 @@
 .header {
     position:fixed;
-    top: 0;          /* Lo coloca en la parte superior */
-    left: 0;         /* Lo alinea al borde izquierdo */
+    top: 0;
+    left: 0;
     width: 100%; 
     background-color: #0c0c0c;
     color: #d4d4d4;
-
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 html {
-    scroll-padding-top: 12%; /* Ajusta este valor a la altura de tu header fijo */
+    scroll-padding-top: 12%;
 }
 
 body {
-    margin-top: 7%; /* Elimina el margen por defecto */
+    margin-top: 7%;
 
 }
 
 .header__container {
     display: flex;
     justify-content: space-between;
-    /* Espacio máximo entre logo y el resto */
+
     align-items: center;
 
     margin: 0;
@@ -41,7 +42,7 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    /* En fila los enlaces de navegación */
+
 }
 
 
@@ -69,7 +70,7 @@ body {
     display: flex;
     align-items: center;
     margin-left: 2rem;
-    /* Empuja los botones hacia la derecha */
+
 }
 
 .user-action, .user{
@@ -102,11 +103,11 @@ body {
 }
 
 
-/* "Enganchamos" visualmente las acciones al final de la lista */
+
 .header__container {
     display: flex;
     justify-content: flex-start;
-    /* Alinea todo a la izquierda inicialmente */
+
     align-items: center;
 
     margin: 10px 40px;
@@ -116,15 +117,15 @@ body {
     display: flex;
     align-items: center;
     margin-left: auto;
-    /* Empuja la navegación y las acciones a la derecha */
+
 }
 
 .header__actions {
     margin-left: 1.5rem;
-    /* Espacio entre el último enlace y el primer botón */
+
 }
 
 .header__actions .user-action:first-child {
     margin-left: 1.5rem;
-    /* Espacio entre los botones */
+
 }

@@ -1,4 +1,4 @@
-//const gameList = await fetch('../data/gameList.json').then(res => res.json());
+
 
 async function init() {
     const defaultCredentials = await fetch('../data/defaultCredentials.json').then(res => res.json());
@@ -24,11 +24,11 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         return;
     }
 
-    // Obtener usuarios existentes
+
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-    // Verificar si el email ya está registrado
+
     if (usuarios.some(u => u.email === email)) {
         alert('El correo ya está registrado');
         return;
@@ -40,7 +40,7 @@ document.querySelector('.login-form').addEventListener('submit', function (e) {
         id = id + 1;
     });
 
-    // Crear usuario
+
     const nuevoUsuario = {
         id,
         nombre,

@@ -2,13 +2,12 @@ const contenedor = document.getElementById("game-content");
 
 const steamDB = new steamDataBase();
 
-// 1. Obtener la cadena de consulta (query string) de la URL actual
+
 const queryString = window.location.search;
-// 2. Crear un objeto URLSearchParams
-// Esto facilita la lectura de los parámetros
+
 const urlParams = new URLSearchParams(queryString);
 
-const appId = urlParams.get('appId'); // 'appId' es el nombre del parámetro que esperamos
+const appId = urlParams.get('appId');
 
 async function cargarJuego(appId) {
     const game = await steamDB.importarJuego(appId);

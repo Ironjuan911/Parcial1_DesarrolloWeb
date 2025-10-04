@@ -1,90 +1,121 @@
-// 1. Definir la clase del Web Component
+
 class MiGame extends HTMLElement {
     constructor() {
-        // Llamar siempre a super() primero en el constructor
+
         super();
 
-        // 2. Adjuntar el Shadow DOM para encapsulación
-        // 'open' significa que se puede acceder al Shadow DOM desde JavaScript externo.
+
         this.attachShadow({ mode: 'open' });
     }
 
-    // 3. Método del ciclo de vida: Se invoca cuando el componente se añade al DOM del documento
+
     connectedCallback() {
         this.render();
     }
 
-    // Método para definir la estructura interna del componente
+
     render() {
         const title = this.getAttribute('title') || 'Título por defecto';
-        const appId = this.getAttribute('steam_appid') || 'Descripción por defecto';
-        const imageUrl = this.getAttribute('image-url') || 'https://via.placeholder.com/150';
+        const appId = this.getAttribute('steam_appid') || '0';
+        const imageUrl = this.getAttribute('image-url') || 'https://via.placeholder.com/320x200?text=Imagen+no+disponible';
         const price = this.getAttribute('price') || 'Gratis';
+        const description = this.getAttribute('description') || 'Descubre este increíble juego lleno de aventuras y diversión.';
 
 
-        // Estructura y Estilos encapsulados
         this.shadowRoot.innerHTML = `
+            <style>
 
-            <div>
-                <a href="../pages/game.html?appId=${appId}">
-                    <img src="${imageUrl}" alt="${title}" />
-                    <h3>${title}</h3>
-                    <p id = price>${price}</p>
-                <a>
-            </div>
+                @import url('../CSS/generalStyles.css');
+            </style>
+            
+            <a href="../pages/game.html?appId=${appId}" class="game-card">
+                <div class="game-card-content">
+                    <img src="${imageUrl}" alt="${title}" class="game-card__image">
+                    <div class="game-card__info">
+                        <h3 class="game-card__title">${title}</h3>
+                        <p class="game-card__description">${description}</p>
+                        <div class="game-card__price ${price === 'Gratis' ? 'free' : ''}">${price}</div>
+                    </div>
+                </div>
+            </a>
         `;
     }
 
-    // Opcional: Si quieres reaccionar a cambios en atributos específicos
+
     static get observedAttributes() {
-        return ['titulo'];
+        return ['title', 'steam_appid', 'image-url', 'price', 'description'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'titulo' && oldValue !== newValue) {
-            this.render(); // Volver a renderizar si el título cambia
+        if (oldValue !== newValue && this.shadowRoot) {
+            this.render();
         }
     }
 }
 
-// 4. Registrar el elemento personalizado con el navegador
-// El nombre de la etiqueta DEBE contener un guion (-).
-customElements.define('mi-game', MiGame);
 
-/**
- * Importa los detalles de un juego de Steam usando su AppID.
- * @param {number} appId - El ID único de la aplicación (juego) de Steam.
- * @returns {Promise<object|null>} Una promesa que se resuelve con los datos del juego o null si falla.
- */
+customElements.define('mi-game', MiGame);
 
 
 async function mostrarJuegos() {
-    const gameList = await fetch('../data/gameList.json').then(res => res.json());
-    const productList = document.getElementById('product-list');
-    const steamDB = new steamDataBase();
+    try {
+        const gameList = await fetch('../data/gameList.json').then(res => res.json());
+        const productList = document.getElementById('product-list');
+        const steamDB = new steamDataBase();
 
-    // Iterar sobre cada juego en la lista y crear un componente personalizado para cada uno
-    for (const idgame of gameList) {
-        const gameData = await steamDB.importarJuego(idgame.id);
-        let textPrice = "";
 
-        if (gameData.is_free) {
-            textPrice = "Gratis";
-        } else {
-            try{
-                textPrice = `$${gameData.price_overview.final / 100}`
-            } catch (error) {
-                textPrice = "No disponible";
-            }
+        if (!productList) {
+            console.error('Elemento product-list no encontrado');
+            return;
         }
 
-        productList.innerHTML += `<mi-game
-            title = "${gameData.name}"
-            steam_appid = "${gameData.steam_appid}"
-            image-url = "${gameData.capsule_image}"
-            price = "${textPrice}"
-        >
-        </mi-game>`;
+
+        productList.innerHTML = '';
+
+
+        for (const idgame of gameList) {
+            try {
+                const gameData = await steamDB.importarJuego(idgame.id);
+                
+
+                if (!gameData || !gameData.name) {
+                    console.warn(`No se pudieron obtener datos para el juego ID: ${idgame.id}`);
+                    continue;
+                }
+
+                let textPrice = "";
+
+                if (gameData.is_free) {
+                    textPrice = "Gratis";
+                } else {
+                    try {
+                        textPrice = `$${(gameData.price_overview.final / 100).toFixed(2)}`;
+                    } catch (error) {
+                        textPrice = "Precio no disponible";
+                    }
+                }
+
+
+                const cleanTitle = gameData.name.replace(/"/g, '&quot;');
+                const cleanDescription = (gameData.short_description || 'Descubre este increíble juego lleno de aventuras y diversión.').replace(/"/g, '&quot;');
+
+                productList.innerHTML += `<mi-game
+                    title="${cleanTitle}"
+                    steam_appid="${gameData.steam_appid}"
+                    image-url="${gameData.capsule_image}"
+                    price="${textPrice}"
+                    description="${cleanDescription}"
+                ></mi-game>`;
+            } catch (gameError) {
+                console.error(`Error al procesar juego ID ${idgame.id}:`, gameError);
+            }
+        }
+    } catch (error) {
+        console.error('Error al mostrar juegos:', error);
+        const productList = document.getElementById('product-list');
+        if (productList) {
+            productList.innerHTML = '<p style="color: white; text-align: center; padding: 2rem;">Error al cargar los juegos. Por favor, recarga la página.</p>';
+        }
     }
 }
 

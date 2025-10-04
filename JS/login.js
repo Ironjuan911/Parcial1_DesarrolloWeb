@@ -20,10 +20,10 @@ document.querySelector('.login-form').addEventListener('submit', function(e) {
         return;
     }
 
-    // Guardar usuario logueado (puedes guardar solo el email o el objeto completo)
+
     localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
     alert('¡Bienvenido, ' + usuario.nombre + '!');
-    window.location.href = '../index.html'; // O a la página que desees
+    window.location.href = '../index.html';
 });
 
 init();
